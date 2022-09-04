@@ -26,6 +26,8 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: azure gray;
 
   &::-webkit-scrollbar {
     width: 5px;
