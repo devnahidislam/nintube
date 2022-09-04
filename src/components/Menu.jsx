@@ -19,23 +19,23 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 
 const Container = styled.div`
   flex: 1;
-  background: black;
-  color: azure;
+  background: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
   height: 100vh;
   font-size: 14px;
   position: sticky;
   top: 0;
   overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: azure gray;
+  scrollbar-color: ${({ theme }) => theme.soft} ${({ theme }) => theme.bgLighter};
 
   &::-webkit-scrollbar {
     width: 5px;
     height: 5px;
-    background-color: gray;
+    background-color: ${({ theme }) => theme.bgLighter};
   }
   &::-webkit-scrollbar-thumb {
-    background: azure;
+    background: ${({ theme }) => theme.soft};
     border-radius: 5px;
   }
 `;
@@ -64,17 +64,17 @@ const Item = styled.div`
   border-radius: 5px;
 
   &:hover {
-    background-color: #333;
+    background-color: ${({ theme }) => theme.hover};
   }
 `;
 const Hr = styled.hr`
   margin: 10px 0;
-  border: 0.5px solid #373737;
+  border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 const Login = styled.div`
   padding-left: 10px;
 `;
-const Button = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -84,16 +84,21 @@ const Button = styled.button`
   border: 1px solid #3ea6ff;
   font-weight: 500;
   border-radius: 3px;
-  margin-top: 10px;
+  margin-top: ${(props)=>props.mt};
   cursor: pointer;
 
   &:hover {
-    color:azure;
-    border: 1px solid azure;
-    background-color: #222;
+    background-color: rgba(62, 166, 255, 0.1);
   }
 `;
-const Menu = () => {
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaa;
+  margin-bottom: ${(props)=>props.mt};
+  padding-left: 10px;
+`;
+const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
@@ -125,12 +130,13 @@ const Menu = () => {
         <Hr />
         <Login>
           Sign in to like videos, comment & subscribe
-          <Button>
+          <Button mt='10px'>
             <AccountCircleOutlinedIcon />
             SIGN IN
           </Button>
         </Login>
         <Hr />
+        <Title>Best of NiNTube</Title>
         <Item>
           <LibraryMusicIcon />
           Music
@@ -168,7 +174,7 @@ const Menu = () => {
           <HelpOutlineIcon />
           Help
         </Item>
-        <Item>
+        <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessIcon />
           Light Mode
         </Item>

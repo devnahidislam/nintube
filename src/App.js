@@ -1,7 +1,9 @@
 import './App.css';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Menu from './components/Menu';
 import Navabar from './components/Navabar';
+import { darkTheme, lightTheme } from './utils/Theme';
+import { useState } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -9,86 +11,23 @@ const Container = styled.div`
 
 const Main = styled.div`
   flex: 7;
-  background: lightblue;
+  background: ${({theme})=>theme.bg};
 `;
 const Wrapper = styled.div``;
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <Container>
-      <Menu />
-      <Main>
-        <Navabar />
-        <Wrapper>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-          <h1>Videos Cards</h1>
-        </Wrapper>
-      </Main>
-    </Container>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Container>
+        <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Main>
+          <Navabar />
+          <Wrapper>videos</Wrapper>
+        </Main>
+      </Container>
+    </ThemeProvider>
   );
 }
 
