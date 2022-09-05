@@ -16,6 +16,7 @@ import FlagIcon from '@mui/icons-material/Flag';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   flex: 1;
@@ -27,7 +28,8 @@ const Container = styled.div`
   top: 0;
   overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: ${({ theme }) => theme.soft} ${({ theme }) => theme.bgLighter};
+  scrollbar-color: ${({ theme }) => theme.soft}
+    ${({ theme }) => theme.bgLighter};
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -48,8 +50,10 @@ const Logo = styled.div`
   align-items: center;
   gap: 5px;
   font-weight: bold;
+  font-size: 16px;
   padding: 0 15px;
   cursor: pointer;
+  color: ${({ theme }) => theme.text};
 `;
 const Img = styled.img`
   height: 25px;
@@ -84,7 +88,7 @@ export const Button = styled.button`
   border: 1px solid #3ea6ff;
   font-weight: 500;
   border-radius: 3px;
-  margin-top: ${(props)=>props.mt};
+  margin-top: ${(props) => props.mt};
   cursor: pointer;
 
   &:hover {
@@ -95,17 +99,19 @@ const Title = styled.h2`
   font-size: 14px;
   font-weight: 500;
   color: #aaa;
-  margin-bottom: ${(props)=>props.mt};
+  margin-bottom: ${(props) => props.mt};
   padding-left: 10px;
 `;
 const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src={nintube} />
-          NiNTube
-        </Logo>
+        <Link to="/">
+          <Logo>
+            <Img src={nintube} />
+            NiNTube
+          </Logo>
+        </Link>
         <Item>
           <HomeIcon />
           Home
@@ -130,7 +136,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Hr />
         <Login>
           Sign in to like videos, comment & subscribe
-          <Button mt='10px'>
+          <Button mt="10px">
             <AccountCircleOutlinedIcon />
             SIGN IN
           </Button>

@@ -9,6 +9,7 @@ const Container = styled.div`
   top: 0;
   background-color: ${({ theme }) => theme.bgLighter};
   height: 56px;
+  z-index: 11111;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -29,17 +30,17 @@ const Search = styled.div`
   justify-content: space-between;
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius:3px;
+  border-radius: 3px;
   color: ${({ theme }) => theme.textSoft};
 `;
 const Input = styled.input`
-  width:100%;
-  border:none;
+  width: 100%;
+  border: none;
   color: ${({ theme }) => theme.textSoft};
-  background-color:transparent;
-  outline:none;
+  background-color: transparent;
+  outline: none;
 
-  ::placeholder{
+  &::placeholder {
     color: ${({ theme }) => theme.textSoft};
     font-weight: bold;
   }
@@ -53,7 +54,7 @@ const Navabar = () => {
           <Input placeholder="Search" />
           <SearchOutlinedIcon />
         </Search>
-        <Button mt='0px'>
+        <Button mt="0px">
           <AccountCircleOutlinedIcon />
           SIGN IN
         </Button>
