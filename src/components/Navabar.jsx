@@ -28,10 +28,16 @@ const Search = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 3px;
   color: ${({ theme }) => theme.textSoft};
+  position: relative;
+`;
+const SearchIcon = styled.div`
+  position: absolute;
+  top:0;
+  right:0;
+  z-index:-1;
 `;
 export const Input = styled.input`
   width: 100%;
@@ -43,10 +49,21 @@ export const Input = styled.input`
   font-size: ${(props) => props.fz}px;
   padding: ${(props) => props.p}px;
   font-weight: 500;
+  transition: 0.3s;
 
-  &::placeholder {
+  ::placeholder {
     color: ${({ theme }) => theme.textSoft};
     font-weight: bold;
+  }
+  :focus {
+    border-width: ${(props) => props.focusBorder};
+    border: 1px solid ${({ theme }) => theme.text};
+    border-width: ${(props) => props.borderWidth};
+    color: ${({ theme }) => theme.text};
+
+    ::placeholder {
+      color: ${({ theme }) => theme.text};
+    }
   }
 `;
 
@@ -55,8 +72,10 @@ const Navabar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input borderWidth="0" fz="15" placeholder="Search" />
-          <SearchOutlinedIcon />
+          <Input borderWidth="0" fz="13" p="5" placeholder="Search" />
+          <SearchIcon>
+            <SearchOutlinedIcon />
+          </SearchIcon>
         </Search>
         <Button mt="0px">
           <AccountCircleOutlinedIcon />
