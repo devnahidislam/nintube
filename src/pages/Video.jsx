@@ -7,7 +7,7 @@ import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { Hr } from '../components/Menu';
-import { ChannelImg } from '../components/Card';
+import Card, { ChannelImg } from '../components/Card';
 import Comments from '../components/Comments';
 
 const Container = styled.div`
@@ -15,7 +15,7 @@ const Container = styled.div`
   gap: 20px;
 `;
 const Content = styled.div`
-  flex: 5;
+  flex: 4;
 `;
 const VideoWrapper = styled.div``;
 const Title = styled.h1`
@@ -45,7 +45,6 @@ const Button = styled.div`
 `;
 const Recommendation = styled.div`
   flex: 2;
-  background-color: aqua;
 `;
 
 const Channel = styled.div`
@@ -147,7 +146,15 @@ const Video = () => {
         <Hr />
         <Comments />
       </Content>
-      <Recommendation>RRR</Recommendation>
+      <Recommendation>
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+      </Recommendation>
     </Container>
   );
 };

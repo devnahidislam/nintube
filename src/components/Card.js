@@ -6,18 +6,24 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 const Menu = styled.div`
   font-size: 12px;
   color: ${({ theme }) => theme.text};
-  position: absolute;
-  top: 0;
-  right: 0;
   visibility: hidden;
+  height:25px;
+  width:25px;
+  border-radius:10px;
+  background-color: rgba(181, 181, 179, 0.4);
+  display: flex;
+  align-items:center;
+  justify-content:center;
 `;
 
 const Container = styled.div`
-  width: 260px;
-  margin-bottom: 20px;
+  width: ${(props) => props.type === 'sm' ? '100%' : '260px'};
+  margin-bottom: ${(props) => props.type === 'sm' ? '10px' : '20px'};
   padding: 3px;
   border-radius: 3px;
   cursor: pointer;
+  display: ${(props) => props.type === 'sm' && 'flex'};
+  gap: 10px;
 
   &:hover {
     background-color: ${({ theme }) => theme.hover};
@@ -28,19 +34,19 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 202px;
+  width: ${(props) => props.type === 'sm' ? '50' : '100'}%;
+  height: ${(props) => props.type === 'sm' ? '120' : '202'}px;
   background: #999;
 `;
 const Details = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  position: relative;
+  margin-top: ${(props) => props.type === 'sm' && '0'}px;
 `;
 const Avatar = styled.div`
   height: 36px;
   flex: 1;
+  display: ${(props) => props.type === 'sm' && 'none'};
 `;
 export const ChannelImg = styled.img`
   width: 30px;
@@ -77,14 +83,14 @@ export const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Card = () => {
+const Card = ({type}) => {
   return (
     <Link to="video/:1">
-      <Container>
-        <Image src="https://i.ytimg.com/vi/DzSLUdJWrEQ/maxresdefault.jpg" />
-        <Details>
-          <Avatar>
-            <ChannelImg src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991" />
+      <Container type={type}>
+        <Image type={type} src="https://i.ytimg.com/vi/DzSLUdJWrEQ/maxresdefault.jpg" />
+        <Details type={type}>
+          <Avatar type={type}>
+            <ChannelImg type={type} src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991" />
           </Avatar>
           <Texts>
             <Title>Test Video</Title>
