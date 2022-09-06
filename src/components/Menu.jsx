@@ -71,7 +71,7 @@ const Item = styled.div`
     background-color: ${({ theme }) => theme.hover};
   }
 `;
-const Hr = styled.hr`
+export const Hr = styled.hr`
   margin: 10px 0;
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
@@ -182,7 +182,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
         </Item>
         <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessIcon />
-          Light Mode
+          {darkMode ? 'Light' : 'Dark'} Mode
         </Item>
       </Wrapper>
     </Container>

@@ -33,12 +33,16 @@ const Search = styled.div`
   border-radius: 3px;
   color: ${({ theme }) => theme.textSoft};
 `;
-const Input = styled.input`
+export const Input = styled.input`
   width: 100%;
-  border: none;
+  border: 1px solid ${({ theme }) => theme.soft};
+  border-width: ${(props) => props.borderWidth};
   color: ${({ theme }) => theme.textSoft};
   background-color: transparent;
   outline: none;
+  font-size: ${(props) => props.fz}px;
+  padding: ${(props) => props.p}px;
+  font-weight: 500;
 
   &::placeholder {
     color: ${({ theme }) => theme.textSoft};
@@ -51,7 +55,7 @@ const Navabar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder="Search" />
+          <Input borderWidth="0" fz="15" placeholder="Search" />
           <SearchOutlinedIcon />
         </Search>
         <Button mt="0px">

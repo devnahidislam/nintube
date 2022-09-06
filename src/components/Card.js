@@ -42,7 +42,7 @@ const Avatar = styled.div`
   height: 36px;
   flex: 1;
 `;
-const ChannelImg = styled.img`
+export const ChannelImg = styled.img`
   width: 30px;
   height: 30px;
   object-fit: cover;
@@ -61,9 +61,9 @@ const Title = styled.h2`
   font-weight: 500;
   color: ${({ theme }) => theme.text};
 `;
-const ChannelName = styled.h4`
+export const ChannelName = styled.h4`
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 5px 0;
   width: fit-content;
   color: ${({ theme }) => theme.textSoft};
@@ -72,7 +72,7 @@ const ChannelName = styled.h4`
     color: ${({ theme }) => theme.text};
   }
 `;
-const Info = styled.div`
+export const Info = styled.div`
   font-size: 12px;
   color: ${({ theme }) => theme.textSoft};
 `;
