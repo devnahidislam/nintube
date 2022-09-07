@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button } from './Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   position: sticky;
@@ -35,14 +36,15 @@ const Search = styled.div`
 `;
 const SearchIcon = styled.div`
   position: absolute;
-  top:0;
-  right:0;
-  z-index:-1;
+  top: 0;
+  right: 0;
+  z-index: -1;
 `;
 export const Input = styled.input`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.soft};
   border-width: ${(props) => props.borderWidth};
+  border-radius: 5px;
   color: ${({ theme }) => theme.textSoft};
   background-color: transparent;
   outline: none;
@@ -77,10 +79,12 @@ const Navabar = () => {
             <SearchOutlinedIcon />
           </SearchIcon>
         </Search>
-        <Button mt="0px">
-          <AccountCircleOutlinedIcon />
-          SIGN IN
-        </Button>
+        <Link to="signin">
+          <Button mt="0px">
+            <AccountCircleOutlinedIcon />
+            SIGN IN
+          </Button>
+        </Link>
       </Wrapper>
     </Container>
   );

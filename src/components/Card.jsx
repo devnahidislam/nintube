@@ -7,18 +7,18 @@ const Menu = styled.div`
   font-size: 12px;
   color: ${({ theme }) => theme.text};
   visibility: hidden;
-  height:25px;
-  width:25px;
-  border-radius:10px;
+  height: 25px;
+  width: 25px;
+  border-radius: 10px;
   background-color: rgba(181, 181, 179, 0.4);
   display: flex;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Container = styled.div`
-  width: ${(props) => props.type === 'sm' ? '100%' : '260px'};
-  margin-bottom: ${(props) => props.type === 'sm' ? '10px' : '20px'};
+  width: ${(props) => (props.type === 'sm' ? '100%' : '260px')};
+  margin-bottom: ${(props) => (props.type === 'sm' ? '10px' : '20px')};
   padding: 3px;
   border-radius: 3px;
   cursor: pointer;
@@ -34,8 +34,8 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  width: ${(props) => props.type === 'sm' ? '50' : '100'}%;
-  height: ${(props) => props.type === 'sm' ? '120' : '202'}px;
+  width: ${(props) => (props.type === 'sm' ? '50' : '100')}%;
+  height: ${(props) => (props.type === 'sm' ? '120' : '202')}px;
   background: #999;
 `;
 const Details = styled.div`
@@ -62,10 +62,10 @@ export const ChannelImg = styled.img`
 const Texts = styled.div`
   flex: 6;
 `;
-const Title = styled.h2`
-  font-size: 16px;
+export const Title = styled.h2`
+  font-size: ${(props) => props.fz}px;
   font-weight: 500;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textSoft};
 `;
 export const ChannelName = styled.h4`
   font-size: 13px;
@@ -83,17 +83,23 @@ export const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Card = ({type}) => {
+const Card = ({ type }) => {
   return (
     <Link to="video/:1">
       <Container type={type}>
-        <Image type={type} src="https://i.ytimg.com/vi/DzSLUdJWrEQ/maxresdefault.jpg" />
+        <Image
+          type={type}
+          src="https://i.ytimg.com/vi/DzSLUdJWrEQ/maxresdefault.jpg"
+        />
         <Details type={type}>
           <Avatar type={type}>
-            <ChannelImg type={type} src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991" />
+            <ChannelImg
+              type={type}
+              src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991"
+            />
           </Avatar>
           <Texts>
-            <Title>Test Video</Title>
+            <Title fz="16">Test Video</Title>
             <ChannelName>Noyon Tara</ChannelName>
             <Info>5200 Views • 1 days ago</Info>
           </Texts>

@@ -62,6 +62,7 @@ const Item = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
   padding: 5px 10px;
   margin: 5px 0;
@@ -112,10 +113,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
             NiNTube
           </Logo>
         </Link>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
+        <Link to="/">
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
+        </Link>
         <Item>
           <ExploreIcon />
           Explore
@@ -136,10 +139,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Hr />
         <Login>
           Sign in to like videos, comment & subscribe
-          <Button mt="10px">
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
+          <Link to="signin">
+            <Button mt="10px">
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Link>
         </Login>
         <Hr />
         <Title>Best of NiNTube</Title>

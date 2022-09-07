@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Video from './pages/Video';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
 
 const Container = styled.div`
   display: flex;
@@ -17,7 +19,7 @@ const Main = styled.div`
   background: ${({ theme }) => theme.bg};
 `;
 const Wrapper = styled.div`
-  padding:20px;
+  padding: 0 20px;
 `;
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
               <Routes>
                 <Route path="/">
                   <Route index element={<Home />} />
+                  <Route path="signin" element={<Signin />} />
+                  <Route path="signup" element={<Signup />} />
                   <Route path="video">
                     <Route path=":id" element={<Video />} />
                   </Route>
