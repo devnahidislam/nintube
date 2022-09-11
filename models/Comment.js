@@ -4,15 +4,15 @@ const CommentSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
-      required: ture,
+      required: true,
     },
     videoId: {
       type: String,
-      required: ture,
+      required: true,
     },
     desc: {
       type: String,
-      required: ture,
+      required: true,
     },
   },
   { timestamps: true }
