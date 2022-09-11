@@ -34,9 +34,21 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
+  if (req.params.id === req.user.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(createError(403, 'You can Get only your account.'));
+  }
+};
+export const getAllUsers = async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.status(200).json(user);
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error) {
     next(error);
   }
@@ -44,7 +56,7 @@ export const getUser = async (req, res, next) => {
 
 export const subscribe = async (req, res, next) => {
   try {
-    await User.findById(req.params.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       $push: { subscribedUsers: req.params.id },
     });
     await User.findByIdAndUpdate(req.params.id, {
@@ -55,10 +67,9 @@ export const subscribe = async (req, res, next) => {
     next(error);
   }
 };
-
 export const UnSubscribe = async (req, res, next) => {
   try {
-    await User.findById(req.params.id, {
+    await User.findByIdAndUpdate(req.user.id, {
       $pull: { subscribedUsers: req.params.id },
     });
     await User.findByIdAndUpdate(req.params.id, {

@@ -3,6 +3,7 @@ import {
   deleteUser,
   dislike,
   getUser,
+  getAllUsers,
   like,
   subscribe,
   UnSubscribe,
@@ -21,16 +22,19 @@ router.put('/:id', verifyToken, update);
 router.delete('/:id', verifyToken, deleteUser);
 
 // Get user
-router.get('/find/:id', getUser);
+router.get('/find/:id', verifyToken, getUser);
+
+// Get all user
+router.get('/all', verifyToken, getAllUsers);
 
 // Subscribe a user
-router.put('/sub/:id', subscribe);
+router.put('/sub/:id', verifyToken, subscribe);
 
 // UnSubscribe a user
-router.put('/unsub/:id', UnSubscribe);
+router.put('/unsub/:id', verifyToken, UnSubscribe);
 
 // Like a video
-router.put('/like/:videoId', like);
+router.put('/like/:videoId', verifyToken, like);
 
 // Dislike a video
-router.put('/dislike/:videoId', dislike);
+router.put('/dislike/:videoId', verifyToken, dislike);

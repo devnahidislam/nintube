@@ -4,23 +4,23 @@ const VideoSchema = new mongoose.Schema(
   {
     userId: {
       type: String,
-      required: ture,
+      required: true,
     },
     title: {
       type: String,
-      required: ture,
+      required: true,
     },
     desc: {
       type: String,
-      required: ture,
+      required: true,
     },
     imgUrl: {
       type: String,
-      required: ture,
+      required: true,
     },
     videoUrl: {
       type: String,
-      required: ture,
+      required: true,
     },
     views: {
       type: Number,
