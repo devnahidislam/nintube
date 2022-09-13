@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../components/Card';
@@ -97,14 +97,31 @@ export const PageLink = styled.span`
 `;
 
 const Signup = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <Container>
       <Wrapper>
         <Title fz="24">Signup Page</Title>
         <Subtitle>To continue NiNTube</Subtitle>
-        <Input p="5" placeholder="Username" />
-        <Input p="5" type="email" placeholder="Email" />
-        <Input p="5" type="password" placeholder="Password" />
+        <Input
+          p="5"
+          placeholder="Username"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          p="5"
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          p="5"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <SigninBtn>Signup</SigninBtn>
 
         <Account>

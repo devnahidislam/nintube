@@ -119,14 +119,18 @@ const Menu = ({ darkMode, setDarkMode }) => {
             Home
           </Item>
         </Link>
-        <Item>
-          <ExploreIcon />
-          Explore
-        </Item>
-        <Item>
-          <SubscriptionsIcon />
-          Subscription
-        </Item>
+        <Link to="/trends">
+          <Item>
+            <ExploreIcon />
+            Explore
+          </Item>
+        </Link>
+        <Link to="/subscriptions">
+          <Item>
+            <SubscriptionsIcon />
+            Subscription
+          </Item>
+        </Link>
         <Hr />
         <Item>
           <VideoLibraryIcon />

@@ -139,7 +139,7 @@ const Video = () => {
                 aperiam quo accusantium.
               </Description>
             </ChanneDetails>
-            <Info></Info>
+            {/* <Info></Info> */}
           </ChannelInfo>
           <Subscribe>Subscribe</Subscribe>
         </Channel>

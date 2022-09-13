@@ -1,7 +1,10 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Title } from '../components/Card';
 import { Input } from '../components/Navabar';
+import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 import {
   PageLinks,
   PageLink,
@@ -14,14 +17,37 @@ import {
 } from './Signup';
 
 const Signin = () => {
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axios.post('/auth/signin', { name, password });
+      dispatch(loginSuccess(res.data));
+    } catch (error) {
+      dispatch(loginFailed());
+    }
+  };
   return (
     <Container>
       <Wrapper>
         <Title fz="24">Signin Page</Title>
         <Subtitle>To continue NiNTube</Subtitle>
-        <Input p="5" placeholder="Username" />
-        <Input p="5" type="password" placeholder="Password" />
-        <SigninBtn>Signin</SigninBtn>
+        <Input
+          p="5"
+          placeholder="Username"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          p="5"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <SigninBtn onClick={handleLogin}>Signin</SigninBtn>
 
         <Account>
           Need an account?

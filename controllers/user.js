@@ -35,15 +35,11 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const getUser = async (req, res, next) => {
-  if (req.params.id === req.user.id) {
-    try {
-      const user = await User.findById(req.params.id);
-      res.status(200).json(user);
-    } catch (error) {
-      next(error);
-    }
-  } else {
-    return next(createError(403, 'You can Get only your account.'));
+  try {
+    const user = await User.findById(req.params.id);
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
   }
 };
 export const getAllUsers = async (req, res, next) => {

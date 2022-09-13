@@ -22,7 +22,7 @@ router.put('/:id', verifyToken, update);
 router.delete('/:id', verifyToken, deleteUser);
 
 // Get user
-router.get('/find/:id', verifyToken, getUser);
+router.get('/find/:id', getUser);
 
 // Get all user
 router.get('/all', verifyToken, getAllUsers);

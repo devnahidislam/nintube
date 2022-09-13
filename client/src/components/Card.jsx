@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { format } from 'timeago.js';
+import axios from 'axios';
 
 const Menu = styled.div`
   font-size: 12px;
@@ -83,25 +85,34 @@ export const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
-const Card = ({ type }) => {
+const Card = ({ type, video }) => {
+  const [users, setUsers] = useState({});
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const res = await axios.get(`/users/find/${video.userId}`);
+      setUsers(res.data);
+    };
+    fetchUsers();
+  }, [video.userId]);
+
   return (
     <Link to="video/:1">
       <Container type={type}>
-        <Image
-          type={type}
-          src="https://i.ytimg.com/vi/DzSLUdJWrEQ/maxresdefault.jpg"
-        />
+        <Image type={type} src={video.imgUrl} />
         <Details type={type}>
           <Avatar type={type}>
             <ChannelImg
               type={type}
-              src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991"
+              src={users.img}
             />
           </Avatar>
           <Texts>
-            <Title fz="16">Test Video</Title>
-            <ChannelName>Noyon Tara</ChannelName>
-            <Info>5200 Views • 1 days ago</Info>
+            <Title fz="16">{video.title}</Title>
+            <ChannelName>{ users.name }</ChannelName>
+            <Info>
+              {video.views} Views • {format(video.createdAt)}
+            </Info>
           </Texts>
           <Menu>
             <MoreVertIcon />

@@ -9,6 +9,12 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 
+import cors from 'cors';
+app.use(
+  cors({
+    origin: 'http://localhost:3000'
+  })
+);
 
 import authRoute from './routes/auth.js';
 import userRoute from './routes/users.js';
