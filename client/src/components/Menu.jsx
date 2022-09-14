@@ -17,6 +17,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   flex: 1;
@@ -104,6 +105,8 @@ const Title = styled.h2`
   padding-left: 10px;
 `;
 const Menu = ({ darkMode, setDarkMode }) => {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <Container>
       <Wrapper>
@@ -141,16 +144,20 @@ const Menu = ({ darkMode, setDarkMode }) => {
           History
         </Item>
         <Hr />
-        <Login>
-          Sign in to like videos, comment & subscribe
-          <Link to="signin">
-            <Button mt="10px">
-              <AccountCircleOutlinedIcon />
-              SIGN IN
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos, comment & subscribe
+              <Link to="signin">
+                <Button mt="10px">
+                  <AccountCircleOutlinedIcon />
+                  SIGN IN
+                </Button>
+              </Link>
+            </Login>
+            <Hr />
+          </>
+        )}
         <Title>Best of NiNTube</Title>
         <Item>
           <LibraryMusicIcon />

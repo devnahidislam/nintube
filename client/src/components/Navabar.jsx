@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { Button } from './Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ChannelImg } from './Card';
 
 const Container = styled.div`
   position: sticky;
@@ -68,8 +71,23 @@ export const Input = styled.input`
     }
   }
 `;
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.textSoft};
+`;
+const Avatar = styled.div`
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: #999;
+`;
 
 const Navabar = () => {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <Container>
       <Wrapper>
@@ -79,12 +97,22 @@ const Navabar = () => {
             <SearchOutlinedIcon />
           </SearchIcon>
         </Search>
-        <Link to="signin">
-          <Button mt="0px">
-            <AccountCircleOutlinedIcon />
-            SIGN IN
-          </Button>
-        </Link>
+        {currentUser ? (
+          <User>
+            <VideoCallOutlinedIcon />
+            <Avatar>
+              <ChannelImg src={currentUser.img} />
+            </Avatar>
+            {currentUser.name}
+          </User>
+        ) : (
+          <Link to="signin">
+            <Button mt="0px">
+              <AccountCircleOutlinedIcon />
+              SIGN IN
+            </Button>
+          </Link>
+        )}
       </Wrapper>
     </Container>
   );
