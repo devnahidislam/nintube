@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import { Title } from '../components/Card';
 import { Input } from '../components/Navabar';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
+import GoogleIcon from '@mui/icons-material/Google';
+import { auth, provider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
+
 import {
   PageLinks,
   PageLink,
@@ -31,6 +35,27 @@ const Signin = () => {
       dispatch(loginFailed());
     }
   };
+
+  const signInWithGoogle = () => {
+    dispatch(loginStart());
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        axios
+          .post('/auth/google', {
+            name: result.user.displayName,
+            email: result.user.email,
+            img: result.user.photoURL,
+          })
+          .then((res) => {
+            dispatch(loginSuccess(res.data));
+          });
+      })
+      .catch((error) => {
+        dispatch(loginFailed());
+      });
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -56,6 +81,14 @@ const Signin = () => {
           </Link>
         </Account>
       </Wrapper>
+
+      <h3>or</h3>
+      <PageLinks onClick={signInWithGoogle}>
+        <PageLink>
+          <GoogleIcon />
+        </PageLink>
+      </PageLinks>
+
       <PageLinks>
         <Link to="/">
           <PageLink>Helps</PageLink>

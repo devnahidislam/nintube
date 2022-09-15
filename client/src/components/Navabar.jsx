@@ -78,7 +78,38 @@ const User = styled.div`
   font-weight: 500;
   color: ${({ theme }) => theme.textSoft};
 `;
+const Video = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.hover};
+  cursor: pointer;
+
+  :hover {
+    box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
+  }
+`;
+
+const MenuBtn = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 5px;
+  border-radius: 20px 5px 5px 20px;
+  cursor: pointer;
+  transition: .2s;
+
+  :hover {
+    box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
+  }
+`;
 const Avatar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 32px;
   width: 32px;
   border-radius: 50%;
@@ -99,11 +130,15 @@ const Navabar = () => {
         </Search>
         {currentUser ? (
           <User>
-            <VideoCallOutlinedIcon />
-            <Avatar>
-              <ChannelImg src={currentUser.img} />
-            </Avatar>
-            {currentUser.name}
+            <Video>
+              <VideoCallOutlinedIcon />
+            </Video>
+            <MenuBtn>
+              <Avatar>
+                <ChannelImg src={currentUser.img} />
+              </Avatar>
+              {currentUser.name}
+            </MenuBtn>
           </User>
         ) : (
           <Link to="signin">
