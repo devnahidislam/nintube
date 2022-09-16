@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ChannelImg } from './Card';
-import { Input } from './Navabar';
+import { Input } from './Navbar';
 import Comment from './Comment';
 
 const Container = styled.div``;

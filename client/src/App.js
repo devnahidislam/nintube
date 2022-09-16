@@ -1,7 +1,7 @@
 import './App.css';
 import styled, { ThemeProvider } from 'styled-components';
 import Menu from './components/Menu';
-import Navabar from './components/Navabar';
+import Navbar from './components/Navbar';
 import { darkTheme, lightTheme } from './utils/Theme';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -31,7 +31,7 @@ function App() {
         <BrowserRouter>
           <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
           <Main>
-            <Navabar />
+            <Navbar />
             <Wrapper>
               <Routes>
                 <Route path="/">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../components/Card';
-import { Input } from '../components/Navabar';
+import { Input } from '../components/Navbar';
 
 export const Container = styled.div`
   display: flex;

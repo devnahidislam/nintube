@@ -52,9 +52,7 @@ export const googleAuth = async (req, res, next) => {
         })
         .status(201)
         .json(user._doc);
-      
     } else {
-
       const newUser = new User({
         ...req.body,
         fromGoogle: true,
@@ -70,7 +68,6 @@ export const googleAuth = async (req, res, next) => {
         .status(201)
         .json(savedUser._doc);
     }
-    
   } catch (error) {
     next(error);
   }

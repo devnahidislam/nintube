@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Title } from '../components/Card';
-import { Input } from '../components/Navabar';
+import { Input } from '../components/Navbar';
 import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 import GoogleIcon from '@mui/icons-material/Google';
 import { auth, provider } from '../firebase';
