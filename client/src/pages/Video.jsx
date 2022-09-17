@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
@@ -6,9 +6,18 @@ import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { Hr } from '../components/Menu';
 import Card, { ChannelImg } from '../components/Card';
 import Comments from '../components/Comments';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+// import axios from '../axios';
+import { dislike, fetchSuccess, like } from '../redux/videoSlice';
+import { format } from 'timeago.js';
+import { subscription } from '../redux/userSlice';
 
 const Container = styled.div`
   display: flex;
@@ -83,6 +92,48 @@ const Subscribe = styled.button`
 `;
 
 const Video = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
+
+  const path = useLocation().pathname.split('/')[2];
+
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const videoRes = await axios.get(`/videos/find/${path}`);
+        const channelRes = await axios.get(
+          `/users/find/${videoRes.data.userId}`
+        );
+
+        setChannel(channelRes.data);
+
+        dispatch(fetchSuccess(videoRes.data));
+      } catch (error) {}
+    };
+    fetchData();
+  }, [path, dispatch]);
+  // console.log(currentVideo);
+  // console.log(channel);
+  // console.log(currentUser);
+
+  const handleLike = async () => {
+    await axios.put(`/users/like/${currentVideo._id}`);
+    dispatch(like(currentUser._id));
+  };
+  const handleDislike = async () => {
+    await axios.put(`/users/dislike/${currentVideo._id}`);
+    dispatch(dislike(currentUser._id));
+  };
+  const handleSubsc = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(`/users/unsub/${channel._id}`)
+      : await axios.put(`/users/sub/${channel._id}`);
+
+    dispatch(subscription(channel._id));
+  };
   return (
     <Container>
       <Content>
@@ -97,17 +148,27 @@ const Video = () => {
             allowfullscreen
           ></iframe>
         </VideoWrapper>
-        <Title>Test video</Title>
+        <Title>{currentVideo.title}</Title>
         <Dettails>
-          <Info>5200 Views • Jun 5, 2022</Info>
+          <Info>
+            {currentVideo.views} Views • {format(currentVideo.createdAt)}
+          </Info>
           <Buttons>
-            <Button>
-              <ThumbUpOutlinedIcon />
-              143
+            <Button onClick={handleLike}>
+              {currentVideo.likes?.includes(currentUser._id) ? (
+                <ThumbUpIcon />
+              ) : (
+                <ThumbUpOutlinedIcon />
+              )}
+              {currentVideo.likes?.length}
             </Button>
-            <Button>
-              <ThumbDownAltOutlinedIcon />
-              Dislike
+            <Button onClick={handleDislike}>
+              {currentVideo.dislikes?.includes(currentUser._id) ? (
+                <ThumbDownIcon />
+              ) : (
+                <ThumbDownAltOutlinedIcon />
+              )}
+              {currentVideo.dislikes?.length}
             </Button>
             <Button>
               <ReplyOutlinedIcon />
@@ -129,24 +190,24 @@ const Video = () => {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <ChannelImg src="https://ik.imagekit.io/nahidislam/products/4_ZD-BcHv_5.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1648273414088" />
+            <ChannelImg src={channel.img} />
             <ChanneDetails>
-              <ChannelName>Noyon Tara</ChannelName>
-              <ChannelCounter>200k Subscriber</ChannelCounter>
-              <Description>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad
-                quaerat libero perspiciatis labore illum, atque maiores porro
-                aperiam quo accusantium.
-              </Description>
+              <ChannelName>{channel.name}</ChannelName>
+              <ChannelCounter>{channel.subscribers} Subscriber</ChannelCounter>
+              <Description>{currentVideo.desc}</Description>
             </ChanneDetails>
             {/* <Info></Info> */}
           </ChannelInfo>
-          <Subscribe>Subscribe</Subscribe>
+          <Subscribe onClick={handleSubsc}>
+            {currentUser.subscribedUsers?.includes(channel._id)
+              ? 'Subscribed'
+              : 'Subscribe'}
+          </Subscribe>
         </Channel>
         <Hr />
         <Comments />
       </Content>
-      <Recommendation>
+      {/* <Recommendation>
         <Card type="sm" />
         <Card type="sm" />
         <Card type="sm" />
@@ -154,7 +215,7 @@ const Video = () => {
         <Card type="sm" />
         <Card type="sm" />
         <Card type="sm" />
-      </Recommendation>
+      </Recommendation> */}
     </Container>
   );
 };
