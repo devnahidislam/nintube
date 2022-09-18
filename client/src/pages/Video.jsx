@@ -145,27 +145,27 @@ const Video = () => {
             allowfullscreen
           ></iframe>
         </VideoWrapper>
-        <Title>{currentVideo.title}</Title>
+        <Title>{currentVideo?.title}</Title>
         <Dettails>
           <Info>
-            {currentVideo.views} Views • {format(currentVideo.createdAt)}
+            {currentVideo?.views} Views • {format(currentVideo?.createdAt)}
           </Info>
           <Buttons>
             <Button onClick={handleLike}>
-              {currentVideo.likes?.includes(currentUser._id) ? (
+              {currentVideo?.likes?.includes(currentUser?._id) ? (
                 <ThumbUpIcon />
               ) : (
                 <ThumbUpOutlinedIcon />
               )}
-              {currentVideo.likes?.length}
+              {currentVideo?.likes?.length}
             </Button>
             <Button onClick={handleDislike}>
-              {currentVideo.dislikes?.includes(currentUser._id) ? (
+              {currentVideo?.dislikes?.includes(currentUser?._id) ? (
                 <ThumbDownIcon />
               ) : (
                 <ThumbDownAltOutlinedIcon />
               )}
-              {currentVideo.dislikes?.length}
+              {currentVideo?.dislikes?.length}
             </Button>
             <Button>
               <ReplyOutlinedIcon />
@@ -191,12 +191,12 @@ const Video = () => {
             <ChanneDetails>
               <ChannelName>{channel.name}</ChannelName>
               <ChannelCounter>{channel.subscribers} Subscriber</ChannelCounter>
-              <Description>{currentVideo.desc}</Description>
+              <Description>{currentVideo?.desc}</Description>
             </ChanneDetails>
             {/* <Info></Info> */}
           </ChannelInfo>
           <Subscribe onClick={handleSubsc}>
-            {currentUser.subscribedUsers?.includes(channel._id)
+            {currentUser?.subscribedUsers?.includes(channel._id)
               ? 'Subscribed'
               : 'Subscribe'}
           </Subscribe>
