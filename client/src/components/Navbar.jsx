@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChannelImg } from './Card';
 import { logout } from '../redux/userSlice';
+import Upload from './Upload';
 
 const Container = styled.div`
   position: sticky;
@@ -124,7 +125,7 @@ const NavMenu = styled.div`
   position: absolute;
   right: 22px;
   top: 55px;
-  width: ${(props) => props.w}px;
+  width: ${(props) => props.w}%;
   padding: 5px;
   border-radius: 10px;
   box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
@@ -222,7 +223,11 @@ const Navbar = () => {
               <Video onClick={() => toggleMenu()}>
                 <VideoCallOutlinedIcon />
               </Video>
-              {upMenu && <NavMenu w={200}>test</NavMenu>}
+              {upMenu && (
+                <NavMenu w={40}>
+                  <Upload />
+                </NavMenu>
+              )}
             </UpVideo>
 
             <UserMenu ref={domNode}>
@@ -233,7 +238,7 @@ const Navbar = () => {
                 {currentUser.name}
               </MenuBtn>
               {open && (
-                <NavMenu w={150}>
+                <NavMenu w={10}>
                   <Ul>
                     <Li>profile</Li>
                     <Li onClick={handleLogout}>logout</Li>

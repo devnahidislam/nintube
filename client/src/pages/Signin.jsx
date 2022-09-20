@@ -8,6 +8,7 @@ import { loginFailed, loginStart, loginSuccess } from '../redux/userSlice';
 import GoogleIcon from '@mui/icons-material/Google';
 import { auth, provider } from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import {
   PageLinks,
@@ -24,6 +25,7 @@ const Signin = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ const Signin = () => {
     try {
       const res = await axios.post('/auth/signin', { name, password });
       dispatch(loginSuccess(res.data));
+      res.status === 201 && navigate('/');
+      console.log(res.status);
     } catch (error) {
       dispatch(loginFailed());
     }

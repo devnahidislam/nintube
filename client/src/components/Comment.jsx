@@ -1,5 +1,7 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { format } from 'timeago.js';
 import { ChannelImg } from './Card';
 
 const Container = styled.div`
@@ -27,17 +29,26 @@ const CommentText = styled.span`
   font-size: 14px;
 `;
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const [channel, setChannel] = useState([]);
+
+  useEffect(() => {
+    const fetchComment = async () => {
+      const res = await axios.get(`/users/find/${comment.userId}`);
+      setChannel(res.data);
+    };
+    fetchComment();
+  }, [comment.userId]);
+
   return (
     <Container>
-      <ChannelImg src="https://ik.imagekit.io/nahidislam/My_Image/nahid.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651245820991" />
+      <ChannelImg src={channel?.img} />
       <Details>
         <Name>
-          Nahid Islam<Date>1 day ago</Date>
+          {channel?.name}
+          <Date> {format(comment?.createdAt)}</Date>
         </Name>
-        <CommentText>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque facere omnis voluptate, eaque voluptates expedita itaque adipisci illo, corrupti neque maxime. Aspernatur assumenda sunt libero?
-        </CommentText>
+        <CommentText>{comment?.desc}</CommentText>
       </Details>
     </Container>
   );
