@@ -4,7 +4,7 @@ import { Button } from './Menu';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChannelImg } from './Card';
 import { logout } from '../redux/userSlice';
@@ -43,7 +43,7 @@ const SearchIcon = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: -1;
+  cursor: pointer;
 `;
 export const Input = styled.input`
   width: 100%;
@@ -196,6 +196,8 @@ const Navbar = () => {
   const toggleMenu = () => setUpMenu((upMenu) => !upMenu);
   const toggle = () => setOpen((open) => !open);
   const dispatch = useDispatch();
+  const [q, setQ] = useState('');
+  const navigate = useNavigate();
 
   const domNode = useClickOutside(() => {
     setOpen(false);
@@ -204,7 +206,7 @@ const Navbar = () => {
     setUpMenu(false);
   });
 
-  const handleLogout = async (e) => {
+  const handleLogout = () => {
     dispatch(logout());
   };
 
@@ -212,8 +214,16 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input borderWidth="0" fz="13" p="5" placeholder="Search" />
-          <SearchIcon>
+          <Input
+            borderWidth="0"
+            fz="13"
+            p="5"
+            placeholder="Search"
+            onChange={(e) => {
+              setQ(e.target.value);
+            }}
+          />
+          <SearchIcon onClick={() => navigate(`/search?q=${q}`)}>
             <SearchOutlinedIcon />
           </SearchIcon>
         </Search>

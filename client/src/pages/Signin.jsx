@@ -34,7 +34,6 @@ const Signin = () => {
       const res = await axios.post('/auth/signin', { name, password });
       dispatch(loginSuccess(res.data));
       res.status === 201 && navigate('/');
-      console.log(res.status);
     } catch (error) {
       dispatch(loginFailed());
     }

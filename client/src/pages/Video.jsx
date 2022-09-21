@@ -18,13 +18,14 @@ import axios from 'axios';
 import { dislike, fetchSuccess, like } from '../redux/videoSlice';
 import { format } from 'timeago.js';
 import { subscription } from '../redux/userSlice';
+import Recommendation from '../components/Recommendation';
 
 const Container = styled.div`
   display: flex;
   gap: 20px;
 `;
 const Content = styled.div`
-  flex: 4;
+  flex: 5;
 `;
 const VideoWrapper = styled.div``;
 const Title = styled.h1`
@@ -51,9 +52,6 @@ const Button = styled.div`
   align-items: center;
   gap: 5px;
   cursor: pointer;
-`;
-const Recommendation = styled.div`
-  flex: 2;
 `;
 
 const Channel = styled.div`
@@ -92,7 +90,7 @@ const Subscribe = styled.button`
 `;
 
 const VideoFrame = styled.video`
-  max-height: 520px;
+  max-height: 420px;
   width: 100%;
   object-fit: cover;
 `;
@@ -143,15 +141,6 @@ const Video = () => {
       <Content>
         <VideoWrapper>
           <VideoFrame src={currentVideo?.videoUrl} controls />
-          {/* <iframe
-            width="100%"
-            height="403"
-            src="https://www.youtube.com/embed/TizxLEYhhQM"
-            title="DO NOT SAY 'I think...' - say THIS instead - 21 more advanced alternative phrases"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe> */}
         </VideoWrapper>
         <Title>{currentVideo?.title}</Title>
         <Dettails>
@@ -212,15 +201,7 @@ const Video = () => {
         <Hr />
         <Comments videoId={currentVideo._id} />
       </Content>
-      {/* <Recommendation>
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-        <Card type="sm" />
-      </Recommendation> */}
+      <Recommendation tags={currentVideo.tags} />
     </Container>
   );
 };

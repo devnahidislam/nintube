@@ -30,7 +30,7 @@ export const signin = async (req, res, next) => {
     res
       .cookie('access_token', token, {
         httpOnly: true,
-        maxAge: 3600000,
+        // maxAge: 3600000,
       })
       .status(201)
       .json(others);
