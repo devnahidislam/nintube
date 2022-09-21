@@ -1,8 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Title } from '../components/Card';
 import { Input } from '../components/Navbar';
+import { signupStart, signupSuccess, signupFailed } from '../redux/userSlice';
 
 export const Container = styled.div`
   display: flex;
@@ -100,6 +103,21 @@ const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    dispatch(signupStart());
+    try {
+      const res = await axios.post('/auth/signup', { name, email, password });
+      dispatch(signupSuccess(res.data));
+      res.status === 200 && navigate('/');
+    } catch (error) {
+      dispatch(signupFailed());
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -122,7 +140,7 @@ const Signup = () => {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SigninBtn>Signup</SigninBtn>
+        <SigninBtn onClick={handleSignup}>Signup</SigninBtn>
 
         <Account>
           Already have an account?
