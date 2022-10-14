@@ -28,7 +28,7 @@ const Container = styled.div`
   position: sticky;
   top: 0;
   overflow: auto;
-  scrollbar-width: thin;
+  scrollbar-width: 'thin';
   scrollbar-color: ${({ theme }) => theme.soft}
     ${({ theme }) => theme.bgLighter};
 
