@@ -51,7 +51,13 @@ export const videoSlice = createSlice({
   },
 });
 
-export const { fetchStart, fetchSuccess, fetchFailed, like, dislike, addComment } =
-  videoSlice.actions;
+export const {
+  fetchStart,
+  fetchSuccess,
+  fetchFailed,
+  like,
+  dislike,
+  addComment,
+} = videoSlice.actions;
 
 export default videoSlice.reducer;

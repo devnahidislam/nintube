@@ -102,14 +102,11 @@ const Card = ({ type, video }) => {
         <Image type={type} src={video.imgUrl} />
         <Details type={type}>
           <Avatar type={type}>
-            <ChannelImg
-              type={type}
-              src={users.img}
-            />
+            <ChannelImg type={type} src={users.img} />
           </Avatar>
           <Texts>
             <Title fz="16">{video.title}</Title>
-            <ChannelName>{ users.name }</ChannelName>
+            <ChannelName>{users.name}</ChannelName>
             <Info>
               {video.views} Views • {format(video.createdAt)}
             </Info>

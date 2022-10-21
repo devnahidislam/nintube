@@ -19,7 +19,7 @@ const CommentBtn = styled.button`
   border: none;
   border-radius: 5px;
   font-weight: 500;
-  color:white;
+  color: white;
   background-color: #065fd4;
   cursor: pointer;
 `;
@@ -40,13 +40,13 @@ const Comments = ({ videoId }) => {
     fetchComments();
   }, [videoId]);
 
-   const handleComment = async (e) => {
-     e.preventDefault();
-     try {
-       const res = await axios.post('/comments', { videoId, desc });
-       dispatch(addComment(res.data));
-     } catch (err) {}
-   };
+  const handleComment = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('/comments', { videoId, desc });
+      dispatch(addComment(res.data));
+    } catch (err) {}
+  };
 
   return (
     <div>
