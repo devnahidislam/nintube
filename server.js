@@ -26,7 +26,7 @@ app.use('/api/users', userRoute);
 app.use('/api/videos', videoRoute);
 app.use('/api/comments', commentRoute);
 
-app.use((err, req, res, next) => {
+app.use((err, res) => {
   const errorStatus = err.status || 500;
   const errorMsg = err.message || 'Something went wrong.';
   return res.status(errorStatus).json({
