@@ -74,12 +74,12 @@ const Signin = () => {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <SigninBtn onClick={handleLogin}>Signin</SigninBtn>
+        <SigninBtn onClick={handleLogin}>Sign In</SigninBtn>
 
         <Account>
           Need an account?
           <Link to="/signup">
-            <Go>Signup</Go>
+            <Go>Sign Up</Go>
           </Link>
         </Account>
       </Wrapper>
