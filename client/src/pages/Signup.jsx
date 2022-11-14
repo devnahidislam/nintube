@@ -24,8 +24,6 @@ export const Wrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.soft};
   padding: 35px 35px 0;
   border-radius: 50%;
-  -webkit-box-shadow: 0px -1px 10px 0px rgba(87, 87, 87, 1);
-  -moz-box-shadow: 0px -1px 10px 0px rgba(87, 87, 87, 1);
   box-shadow: 0px -1px 10px 0px rgba(87, 87, 87, 1);
 `;
 
@@ -58,8 +56,6 @@ export const Account = styled.div`
   background-color: ${({ theme }) => theme.bgLighter};
   border: 1px solid ${({ theme }) => theme.soft};
   box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(77, 77, 77, 0.75);
 `;
 export const Go = styled.span`
   font-weight: 500;
