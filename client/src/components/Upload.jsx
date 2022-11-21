@@ -171,7 +171,7 @@ const Upload = () => {
       />
       <Input
         type="text"
-        placeholder="Separate the tags with commas."
+        placeholder="Separate the tags with comma."
         onChange={handleTags}
       />
       <Label>Image :</Label>
